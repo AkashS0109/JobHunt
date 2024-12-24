@@ -1,0 +1,24 @@
+# Node.js Modules
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Ignore built frontend files
+client/build/
+
+# Environment file
+.env
+
+# MongoDB files (if using MongoDB)
+*.mongodb
+
+
+# Logs
+*.log
+
+# IDE/Editor files
+.DS_Store
+.idea/
+.vscode/
+

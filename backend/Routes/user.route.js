@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.route("/register").post(singleUpload,register);
 router.route("/login").post(isAuthenticated,login)
-router.route("/logout").get(isAuthenticated,logout);  //get bcz we r not ending any data
+router.route("/logout").get(logout);  //get bcz we r not ending any data
 router.route("/profile/update").post(isAuthenticated,singleUpload,Updatedprofile);
 
 

@@ -1,7 +1,7 @@
 const BASE_URL =
   window.location.hostname === 'localhost'
     ? 'http://localhost:8000'
-    : 'https://jobconnect-6l04.onrender.com';
+    : 'https://jobhunt-n68a.onrender.com';
 
 console.log(BASE_URL);
 

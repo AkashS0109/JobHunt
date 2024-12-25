@@ -55,13 +55,14 @@ export const register= async (req, res) => {
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
-
+    console.log(token);
     // Return response
     return res.status(201).cookie("token", token, {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "None",
+      domain:"job-hunt-eosin.vercel.app"
     }).json({
       message: "Account Created Successfully",
       user: {

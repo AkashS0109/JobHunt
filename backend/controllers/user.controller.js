@@ -114,12 +114,12 @@ export const login = async (req, res) => {
         success: false,
       });
     }
-    console.log(process.env.SECRET_KEY)
+    console.log("key in controller:",process.env.SECRET_KEY)
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
 
-     console.log(token);
+     console.log("token in controller:",token);
     const sanitizedUser = {
       _id: user._id,
       fullname: user.fullname,

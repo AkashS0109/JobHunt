@@ -48,7 +48,7 @@ export default function Login() {
       if (res.data.success) {
         dispatch(setUser(res.data.user));  // Set user in Redux store
          
-        console.log("Token stored in cookies:",res.data); // Log token in console
+        console.log("Token stored in cookies frontend:",res.data.token); // Log token in console
         navigate("/");
         toast.success(res.data.message);
       }

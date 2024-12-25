@@ -60,7 +60,7 @@ export const register= async (req, res) => {
     return res.status(201).cookie("token", token, {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure:  true,
       sameSite: "None",
       domain:"job-hunt-eosin.vercel.app"
     }).json({

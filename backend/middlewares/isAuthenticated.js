@@ -12,7 +12,7 @@ const isAuthenticated = async (req, res, next) => {
 
         
         const token = req.cookies?.token;
-       
+            console.log("token i middleware :")
         if (!token) {
             return res.status(401).json({
                 message: "User not authenticated: Token missing",
@@ -23,7 +23,7 @@ const isAuthenticated = async (req, res, next) => {
       const secretkey=process.env.SECRET_KEY;
         const decoded = jwt.verify(token,secretkey );
         req.id = decoded.userId;
-      
+       console.log(secretkey);
         next();
     } catch (error) {
         console.error("Authentication error:", error.message);

@@ -40,73 +40,31 @@ export const postJob = async (req, res) => {
 }
 export const getAllJobs = async (req, res) => {
     try {
-        // const jobs = await Job.find().sort({ createdAt: -1 });
-           
-        
-        // Get the keyword from the query or set it to an empty string if not provided
-        const keyword = (req.query.keyword || "").trim();
-        
-
-
-        // Build the query object to search by title or description (case-insensitive)
+        const keyword = req.query.keyword || "";
         const query = {
             $or: [
                 { title: { $regex: keyword, $options: "i" } },
-                { description: { $regex: keyword, $options: "i" } }
+                { description: { $regex: keyword, $options: "i" } },
             ]
         };
-
-
         const jobs = await Job.find(query).populate({
-            path: "company",
-            select: "name location" // Limit fields to avoid sensitive data
+            path: "company"
+            
         }).sort({ createdAt: -1 });
-
-        
-        // If no jobs are found, return a 404 response
-        if (!jobs.length) {
+        if (!jobs) {
             return res.status(404).json({
-                message: "No jobs found",
+                message: "Jobs not found.",
                 success: false
-            });
-        }
-           
-        // Return the found jobs with a success status
+            })
+        };
         return res.status(200).json({
             jobs,
             success: true
-        });
-
-    
-       
+        })
     } catch (error) {
-        // Log the error and return a generic error message
-        console.error(error);
-        return res.status(500).json({
-            message: "Internal server error",
-            success: false
-        });
+        console.log(error);
     }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

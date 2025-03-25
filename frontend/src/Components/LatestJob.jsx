@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import LatestJobcard from './LatestJobcard';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import useGetAllJobs from '@/hooks/useGetAllJobs';
+import useGetAllJobs from '../Hooks/useGetAllJobs';
 
 export default function LatestJob() {
     const {allJobs} =useSelector(store=>store.job)

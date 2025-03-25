@@ -1,6 +1,6 @@
-# JobHunt - MERN Stack Job Portal
+# JobConnect - MERN Stack Job Portal
 
-JobHunt is a full-featured job portal built using the **MERN (MongoDB, Express.js, React.js, Node.js)** stack. It allows job seekers to browse, search, and apply for jobs, while employers can post and manage job listings.
+JobConnect.. is a full-featured job portal built using the **MERN (MongoDB, Express.js, React.js, Node.js)** stack. It allows job seekers to browse, search, and apply for jobs, while employers can post and manage job listings.
 
 ## Features
 

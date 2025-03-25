@@ -4,6 +4,7 @@ import axios from 'axios';
 import { setAllJobs } from '../redux/jobSlice'// Adjust import based on your action path
 import { JOB_API } from '@/utils/constant';
 import {setUser} from '@/redux/authSlice';
+
 const useGetAllJobs = () => {
     const dispatch = useDispatch();
     const { searchQuery } = useSelector(store => store.job); // Assuming you have a 'job' slice in your Redux store

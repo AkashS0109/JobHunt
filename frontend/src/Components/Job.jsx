@@ -1,18 +1,26 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Button } from './ui/button'
 import { Avatar, AvatarImage } from '../Components/ui/avatar'
 import { Bookmark } from 'lucide-react'
 import { Badge } from './ui/badge'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 export default function Job({ job }) {
+    const [isSaved, setIsSaved] = useState(false);
     const navigate = useNavigate();
 
+    const handleSaveJobs=()=>{
+        setIsSaved(true);
+        toast.success('Job saved successfully');
+    }
     const dayAgoFn = (mongotime) => {
         const createdAt = new Date(mongotime);
         const currentT = new Date();
         const timeD = currentT - createdAt;
         return Math.floor(timeD / (1000 * 24 * 60 * 60));
+
+        
     }
   
     return (
@@ -50,7 +58,8 @@ export default function Job({ job }) {
             </div>
             <div className='flex items-center  gap-2 lg:gap-4 mt-2 lg:mt-4'>
                 <Button variant="outline"  className={'text-sm p-3'} onClick={() => navigate(`/description/${job?._id}`)}>Details</Button>
-                <Button variant="outline" className="bg-blue-700 border-blue-700 text-sm p-3 text-white">Save For Later</Button>
+                <Button variant="outline" className={`${isSaved ? "bg-white text-blue-700 border-blue-700" : "bg-blue-700 border-blue-700 text-white"} text-sm p-3`} disabled={isSaved} onClick={handleSaveJobs}> {isSaved ? "Saved" : "Save For Later"}</Button>
+             
             </div>
         </div>
         </div>

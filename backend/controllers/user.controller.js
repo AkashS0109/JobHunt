@@ -119,7 +119,7 @@ export const login = async (req, res) => {
       expiresIn: "1d",
     });
 
-     console.log("token in controller:",token);
+    
     const sanitizedUser = {
       _id: user._id,
       fullname: user.fullname,

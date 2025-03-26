@@ -39,7 +39,7 @@ JobConnect.. is a full-featured job portal built using the **MERN (MongoDB, Expr
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/jobhunt.git
+git clone https://github.com/AkashS0109/JobHunt.git
 cd jobhunt
 ```
 

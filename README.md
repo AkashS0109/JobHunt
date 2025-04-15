@@ -1,129 +1,95 @@
-#Job Portal Website
+# JobConnect - MERN Stack Job Portal
 
-This project is a dynamic job portal application built using modern web development technologies. It provides a platform for job seekers to search for job opportunities 
-and for companies to post job openings. However, please note that there are some issues encountered post-deployment, which are highlighted in the Known Issues section below.
+JobConnect.. is a full-featured job portal built using the **MERN (MongoDB, Express.js, React.js, Node.js)** stack. It allows job seekers to browse, search, and apply for jobs, while employers can post and manage job listings.
 
-#Table of Contents
+## Features
 
-Overview
+### For Job Seekers (Students)
+- 🔍 Search and filter jobs by category, company, and keywords.
+- 📌 Save jobs for later.
+- 📝 Apply to jobs directly through the portal.
+- 👤 User authentication (register/login/logout).
+- 📄 Upload and manage resumes.
 
-Features
+### For Employers (Admin)
+- 📝 Post new job listings.
+- ✏️ Edit and update job postings.
+- 🗑️ Delete job postings.
+- 📊 View applications submitted by candidates.
 
-Technologies Used
+### General Features
+- 🛠️ Secure authentication using JWT.
+- ⚡ Real-time job updates.
+- 📦 Fully responsive UI with modern design.
+- 🔄 State management using Redux.
+- 🔍 Efficient job searching with filters and keyword search.
 
-Installation
+## Technologies Used
 
-Usage
+- **Frontend:** React.js, Redux Toolkit, Tailwind CSS
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB, Mongoose
+- **Authentication:** JWT (JSON Web Tokens), bcrypt.js
+- **State Management:** Redux Toolkit
+- **UI Framework:** Tailwind CSS
+- **HTTP Requests:** Axios
+- **Deployment:** Vercel (Frontend), Render/Heroku (Backend)
 
-Known Issues
+## Installation & Setup
 
-Contributing
+### 1. Clone the Repository
+```bash
+git clone https://github.com/AkashS0109/JobHunt.git
+cd jobhunt
+```
 
-License
-
-Overview
-
-The Job Portal Application connects job seekers and companies in a single platform, providing functionalities for
-searching and applying for jobs, and for companies to manage job postings. The app features user authentication, dynamic job listing management, and a user-friendly interface.
-
-Features
-
-User Roles:
-
-Job Seekers can register, log in, search for jobs, and apply.
-
-Companies can post, edit, and manage job listings.
-
-Dynamic Job Listings:
-
-Filter and sort jobs by categories, locations, or experience level.
-
-User Authentication:
-
-Secure login and registration system with password hashing.
-
-Responsive Design:
-
-Fully responsive interface for both desktop and mobile devices.
-
-Technologies Used
-
-Frontend: React.js, Tailwind CSS
-
-Backend: Node.js, Express.js
-
-Database: MongoDB
-
-Deployment: Deployed on a cloud platform (e.g., AWS, Heroku, or Vercel)
-
-Installation
-
-Prerequisites
-
-Node.js and npm installed.
-
-MongoDB database setup.
-
-Code editor (e.g., Visual Studio Code).
-
-Steps
-
-Clone the repository:
-
-git clone https://github.com/your-username/job-portal.git
-
-Navigate to the project folder:
-
-cd job-portal
-
-Install backend dependencies:
-
+### 2. Install Dependencies
+#### Backend:
+```bash
+cd backend
 npm install
+```
 
-Navigate to the frontend folder and install dependencies:
-
-cd client
+#### Frontend:
+```bash
+cd ../frontend
 npm install
+```
 
-Start the development server:
+### 3. Set Up Environment Variables
+Create a `.env` file in the backend directory with the following variables:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
 
-cd ..
-npm run dev
+### 4. Run the Application
+#### Start Backend Server:
+```bash
+cd backend
+npm start
+```
 
-Open your browser and navigate to http://localhost:3000.
+#### Start Frontend Server:
+```bash
+cd frontend
+npm start
+```
 
-Usage
+## Login Credentials
 
-For Job Seekers:
+### Student Login
+- **Email:** sam1@gmail.com  
+- **Password:** sam  
 
-Register or log in.
+### Admin Login
+- **Email:** rawat1@gmail.com  
+- **Password:** rawat  
 
-Search for jobs using filters.
+## Contributing
+Contributions are welcome! Feel free to fork this repository and submit a pull request with improvements or bug fixes.
 
-Apply for suitable jobs.
+## License
+This project is licensed under the MIT License.
 
-For Companies:
-
-Register or log in.
-
-Post new job openings.
-
-Manage job listings from the dashboard.
-
-Known Issues
-
-Deployment Inconsistencies:
-
-Some pages are not loading correctly on the deployed version.
-
-Company logos uploaded via the platform are not always visible.
-
-Image and static file paths may be misconfigured.
-
-Temporary Workarounds:
-
-Verify that all environment variables are correctly set up on the deployment platform.
-
-Check for CORS issues that may prevent API requests from functioning as expected.
-
-Debug static file handling for images and other resources on the server.

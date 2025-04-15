@@ -13,11 +13,7 @@ const useGetAllJobs = () => {
     
 
     useEffect(() => {
-        if(!user) {
-            // Show message when not authenticated
-            console.log("Please log in to view all jobs.");
-            return;
-        }
+       
         const fetchAllJobs = async () => {
             try {
                 const res = await axios.get(`${JOB_API}/get`, {

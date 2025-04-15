@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-     origin: ["http://localhost:5173","https://jobconnectkappa.vercel.app/","https://jobhunt-n68a.onrender.com","http://localhost:8000"],
+     origin: ["http://localhost:5173","https://jobconnectkappa.vercel.app","https://jobhunt-n68a.onrender.com","http://localhost:8000"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization','Access-Control-Allow-Credentials'],
     credentials: true,

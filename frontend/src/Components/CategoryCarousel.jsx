@@ -17,7 +17,7 @@ const category = [
     "Data Science",
     "Graphic Designer",
     "Full Stack Developer",
-    "Data Analytics"
+    "Data Analyst"
 ];
 
 export default function CategoryCarousel() {
@@ -25,6 +25,7 @@ export default function CategoryCarousel() {
     const navigate = useNavigate();
 
     const searchQueryHandler = (query) => {
+        console.log("Here is your query",query)
         dispatch(setSearchQuery(query));
         navigate("/browse");
     };

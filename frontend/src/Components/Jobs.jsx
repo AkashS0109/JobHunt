@@ -3,6 +3,7 @@ import Navbar from './sharedf/Navbar';
 import FilterCard from './ui/FilterCard';
 import Job from './Job';
 import { useSelector } from 'react-redux';
+import Footer from './Footer';
 
 export default function Jobs() {
     const { allJobs, searchQuery } = useSelector(store => store.job);
@@ -26,7 +27,7 @@ export default function Jobs() {
     return (
         <div>
             <Navbar />
-            <div className="w-full flex justify-center mt-4">
+            <div className="w-full flex justify-center mt-10 py-10">
                 <div className="max-w-7xl flex w-full xl:w-10/12 lg:mt-10 md:w-5/6">
                     {/* Filter Section */}
                     <div className="md:w-1/4 w-1/3 lg:w-[160px]">
@@ -36,7 +37,7 @@ export default function Jobs() {
                     {/* Responsive Job Cards Section */}
                     <div className="lg:w-10/12 md:w-3/4 w-full overflow-y-auto" style={{ maxHeight: 'calc(100vh - 80px)' }}>
                         {filterJobs.length <= 0 ? (
-                            <span>Job Not Found</span>
+                            <span className='text-center text-red-500 text-xl'>No Jobs Avilable for This Location.</span>
                         ) : (
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2">
                                 {filterJobs.map((job) => (
@@ -49,6 +50,7 @@ export default function Jobs() {
                     </div>
                 </div>
             </div>
+              <Footer className="w-full" />
         </div>
     );
 }

@@ -23,9 +23,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-full flex-col 2xl:p-0">
-        <Navbar />
-        <Hero />
+    <Navbar  className="mt-0" />
+      <div className="w-full flex-col 2xl:p-0">    
+        <Hero className="pt-20" />
         <CategoryCarousel />
         <LatestJob />
       </div>

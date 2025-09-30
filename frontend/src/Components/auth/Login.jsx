@@ -6,6 +6,7 @@ import { Input } from "../ui/input";
 import { RadioGroup } from "../ui/radio-group";
 import { Button } from "../ui/button";
 import { END_POINT } from "@/utils/constant";
+import Image from "../../images/f1.png"; // ✅ fixed import
 import { toast } from "sonner";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,10 +28,17 @@ export default function Login() {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    if (!input.email) {
+      toast.error("Please Enter the Email");
+      return;
+    }
+    if (!input.password) {
+      toast.error("Please Enter the Password");
+      return;
+    }
     if (!input.role) {
       toast.error("Please select a role.");
       return;
@@ -39,16 +47,14 @@ export default function Login() {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(`${END_POINT}/login`, input, {
-        headers: {
-          "Content-Type": "application/json",  
-        },
+        headers: { "Content-Type": "application/json" },
         withCredentials: true,
+        
       });
 
       if (res.data.success) {
-        dispatch(setUser(res.data.user));  // Set user in Redux store
-         
-        console.log("Token stored in cookies frontend:",res.data.token); // Log token in console
+        dispatch(setUser(res.data.user));
+        // console.log("Token stored in cookies frontend:", res.data.token);
         navigate("/");
         toast.success(res.data.message);
       }
@@ -59,87 +65,120 @@ export default function Login() {
       dispatch(setLoading(false));
     }
   };
-  return (
-    <div>
-      <Navbar />
-      <div className="flex items-center max-w-5xl mx-auto justify-center pt-30">
-        <form
-          onSubmit={submitHandler}
-          className="lg:w-1/2 w-5/6 md:w-2/3 border-violet-600 border-2 rounded-md p-4 my-10"
-        >
-          <h1 className="font-bold lg:text-5xl text-4xl mb-5 w-full">LogIn</h1>
 
-          <div className="lg:my-4 my-2">
-            <Label>Email</Label>
-            <Input
-              type="email"
-              placeholder="aka@gmail.com"
-              value={input.email}
-              name="email"
-              onChange={changeEventHandler}
-              className="outline-none bg-transparent text-black placeholder-gray-400 border border-gray-300 rounded-md focus:border-violet-800 focus:ring-2 focus:ring-violet-700"
-            />
-          </div>
+return (
+  <div className="min-h-screen flex flex-col bg-gradient-to-br from-violet-200 via-white to-violet-400">
+    <Navbar />
 
-          <div className="lg:my-3 my-2">
-            <Label>Password</Label>
-            <Input
-              type="password"
-              value={input.password}
-              name="password"
-              onChange={changeEventHandler}
-              className="outline-none bg-transparent text-black border border-gray-300 rounded-md focus:border-violet-800 focus:ring-2 focus:ring-violet-700"
-            />
-          </div>
+    {/* Main container for image + form */}
+    <div className="flex flex-1 items-center justify-center px-6 ">
+      <div className="flex flex-col lg:flex-row  shadow-2xl rounded-3xl overflow-hidden border border-gray-200 max-w-6xl w-full">
 
-          <div className="flex item-center justify-between">
-            <RadioGroup className="flex items-center gap-5 md:my-5 my-2">
+        {/* Left Image */}
+        <div className="hidden lg:flex lg:w-1/2 bg-gray-100 items-center justify-center">
+          <img src={Image} alt="login banner" className="w-full h-full object-cover bg-violet-600" />
+        </div>
+
+        {/* Right Form */}
+        <div className="w-full lg:w-1/2 p-8 flex flex-col bg-transparent items-center justify-center">
+          <h1 className="font-extrabold text-3xl lg:text-4xl mb-4 text-center text-violet-800">
+            Welcome Back 👋
+          </h1>
+          <p className="text-center text-gray-600 mb-6">
+            Login to your account and continue your journey
+          </p>
+
+          <form onSubmit={submitHandler} className="space-y-4">
+            {/* Email */}
+            <div>
+              <Label className="text-gray-700">Email</Label>
+              <Input
+                type="email"
+                placeholder="aka@gmail.com"
+                value={input.email}
+                name="email"
+                onChange={changeEventHandler}
+                className="mt-1 w-full bg-gray-50 text-black placeholder-gray-400 border border-gray-300 rounded-lg px-3 py-2 focus:border-violet-600 focus:ring-2 focus:ring-violet-500"
+              />
+            </div>
+
+            {/* Password */}
+            <div>
+              <Label className="text-gray-700">Password</Label>
+              <Input
+                type="password"
+                value={input.password}
+                name="password"
+                onChange={changeEventHandler}
+                className="mt-1 w-full bg-gray-50 text-black border border-gray-300 rounded-lg px-3 py-2 focus:border-violet-600 focus:ring-2 focus:ring-violet-500"
+              />
+            </div>
+
+            {/* Role */}
+            <RadioGroup className="flex gap-8 lg:gap-10 my-6">
               <div className="flex items-center space-x-2">
                 <Input
                   type="radio"
                   name="role"
                   value="student"
-                  className="cursor-pointer w-4 h-4"
                   checked={input.role === "student"}
                   onChange={changeEventHandler}
+                  className={`cursor-pointer w-4 h-4 ${
+                    input.role === "student" ? "accent-violet-600" : "accent-gray-400"
+                  }`}
                 />
-                <Label>Student</Label>
+                <Label className={input.role === "student" ? "text-violet-600 font-semibold" : "text-gray-700"}>
+                  Student
+                </Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Input
                   type="radio"
                   name="role"
                   value="recruiter"
-                  className="cursor-pointer w-4 h-4"
                   checked={input.role === "recruiter"}
                   onChange={changeEventHandler}
+                  className={`cursor-pointer w-4 h-4 ${
+                    input.role === "recruiter" ? "accent-violet-600" : "accent-gray-400"
+                  }`}
                 />
-                <Label>Recruiter</Label>
+                <Label className={input.role === "recruiter" ? "text-violet-600 font-semibold" : "text-gray-700"}>
+                  Recruiter
+                </Label>
               </div>
             </RadioGroup>
-          </div>
 
-          <div className="flex items-center flex-wrap">
-            {loading ? (
-              <Button>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                <span>Please wait</span>
-              </Button>
-            ) : (
-              <Button type="submit" className="w-full my-2 lg:my-4 mr-3 bg-violet-800">
-                Login
-              </Button>
-            )}
-            <span>
-              Don't have an account?
-              <Link to="/signup" className="text-violet-600 font-semibold">
-                {" "}
-                SignUp
+            {/* Button */}
+            <div>
+              {loading ? (
+                <Button
+                  disabled
+                  className="w-full bg-violet-700 hover:bg-violet-800 text-white py-3 rounded-lg font-semibold flex items-center justify-center"
+                >
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  <span>Please wait</span>
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="w-full bg-violet-700 hover:bg-violet-800 text-white py-3 rounded-lg font-semibold transition-all duration-200"
+                >
+                  Login
+                </Button>
+              )}
+            </div>
+
+            {/* Footer */}
+            <p className="mt-6 text-center text-gray-600">
+              Don&apos;t have an account?{" "}
+              <Link to="/signup" className="text-violet-700 font-semibold hover:underline">
+                Sign Up
               </Link>
-            </span>
-          </div>
-        </form>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
-  );
+  </div>
+);
 }

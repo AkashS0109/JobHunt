@@ -5,12 +5,13 @@ import axios from 'axios';
 import useGetAllJobs from '../Hooks/useGetAllJobs';
 
 export default function LatestJob() {
-    const {allJobs} =useSelector(store=>store.job)
+    const {allJobs,searchQuery} =useSelector(store=>store.job)
     useGetAllJobs();
     return (
-        <div className='max-w-9xl  mx-auto my-10  mt-10 flex items-center flex-col justify-center'>
+        <div className='max-w-9xl  mx-auto my-10  mt-10 flex items-center flex-col justify-center '>
+
             <h1 className='xl:text-4xl text-2xl font-bold md:text-3xl my-5 relative hover:drop-shadow-3xl animate-pop'><span className='text-violet-800'>Latest Job </span>Openings</h1>
-            {console.log("Jobs",allJobs)}
+           
             <div className='flex   flex-wrap lg:flex-row items-center justify-center w-full  sm:w-3/4  gap-2 md:gap-2 my-3'>
                 {
                     

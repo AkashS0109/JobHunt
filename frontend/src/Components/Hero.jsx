@@ -10,11 +10,12 @@ export default function Hero() {
   const dispatch=useDispatch()
   const searchQueryHandler=()=>{
     dispatch(setSearchQuery(query));
+ 
     navigate("/browse")
   }
   return (
-    <div className='text-center py-10  md:mt-10   flex flex-col justify-center items-center'>
-       <h1 className='md:text-5xl md:leading-tight xl:text-6xl md:py-6 text-3xl font-bold   leading-tight  w-5/6 md:w-3/4  hover:drop-shadow-3xl'> Discover New Opportunities  <br/> and Achieve Your <span
+    <div className='text-center py-20  md:mt-10   flex flex-col justify-center items-center  '>
+       <h1 className='md:text-5xl md:leading-tight xl:text-5xl 2xl:text-6xl md:py-6 text-3xl font-bold   leading-tight  w-5/6 md:w-3/4  hover:drop-shadow-3xl'> Discover New Opportunities  <br/> and Achieve Your <span
      className='text-red-600 animate-pulse'>Dream Jobs</span></h1>
        <p className='text-xl  lg:text-4xl  py-4 lg:w-[60%] w-[80%]  font-medium'>Your Next Career Move Starts Here Explore Thousands of Opportunities! </p>
        <div className='flex lg:w-[30%] shadow-lg shadow-violet-200  rounded-2xl items-center  mx-auto md:my-10'>

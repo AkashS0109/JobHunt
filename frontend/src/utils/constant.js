@@ -3,7 +3,7 @@ const BASE_URL =
     ? 'http://localhost:8000'
     : 'https://jobhunt-n68a.onrender.com';
 
-console.log(BASE_URL);
+// console.log(BASE_URL);
 
 export const END_POINT = `${BASE_URL}/api/v1/user`;
 export const JOB_API = `${BASE_URL}/api/v1/job`;

@@ -94,10 +94,11 @@ export const login = async (req, res) => {
 
     let user = await User.findOne({ email });
     if (!user) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = new User({ email, password: hashedPassword, role });
-      await newUser.save();
-      user = newUser;
+      return res.status(400).json({message:"User Doesn't Exists Create User First"});
+      // const hashedPassword = await bcrypt.hash(password, 10);
+      // const newUser = new User({ email, password: hashedPassword, role });
+      // await newUser.save();
+      // user = newUser;
     } else {
       const isPasswordCorrect = await bcrypt.compare(password, user.password);
       if (!isPasswordCorrect) {

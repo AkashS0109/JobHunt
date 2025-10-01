@@ -45,13 +45,13 @@ export default function Login() {
     }
 
     try {
-      dispatch(setLoading(true));
+      
       const res = await axios.post(`${END_POINT}/login`, input, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
         
       });
-
+ dispatch(setLoading(true));
       if (res.data.success) {
         dispatch(setUser(res.data.user));
         // console.log("Token stored in cookies frontend:", res.data.token);

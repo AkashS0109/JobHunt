@@ -152,7 +152,7 @@ return (
             <div>
               {loading ? (
                 <Button
-                  disabled
+                  disabled={loading && user != null}
                   className="w-full bg-violet-700 hover:bg-violet-800 text-white py-3 rounded-lg font-semibold flex items-center justify-center"
                 >
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />

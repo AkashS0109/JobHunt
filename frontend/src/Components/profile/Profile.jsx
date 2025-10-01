@@ -27,6 +27,7 @@ export default function Profile() {
     return (
         <div className=''>
             <Navbar />
+            <div className='pt-20'>
             <div className='max-w-3xl mx-auto bg-violet-200  border-gray-200 rounded-2xl my-5  p-5 w-3/4 md:w-2/3 relative' >
             <Button onClick={()=>setOpen(true)} className="absolute top-4 right-4  h-5 p-2 lg:h-8 lg:p-4 " variant="outline"><Pen className='w-3 lg:w-4 2xl:w-5' /></Button>
                 <div className='flex justify-between'>
@@ -69,6 +70,7 @@ export default function Profile() {
                }
                 </div>
                 
+            </div>
             </div>
             <div className='max-w-4xl mx-auto bg-white rounded-2xl text-center p-1'>
                  <h1 className='font-bold text-lg my-5'>Applied Jobs</h1>

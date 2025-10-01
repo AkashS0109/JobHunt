@@ -27,6 +27,10 @@ export default function Login() {
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+ useEffect(() => {
+  dispatch(setUser(null));        // clear user
+  dispatch(setLoading(false));    // ensure spinner off
+}, [dispatch]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

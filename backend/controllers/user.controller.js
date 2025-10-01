@@ -170,71 +170,57 @@ export const logout = async (req, res) => {
 export const Updatedprofile = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
-    const file = req.file;
-    
-     const fileuri= getDataUri(file);
-     
-     const cloudRes=await cloudinary.uploader.upload(fileuri.content);
+    const file = req.file; // may be undefined
 
-
-    let skillsArray;
-       if(skills){
-         skillsArray = skills.split(",");
-        
-       }
-    const userId = req.id; // Middleware authentication
-
-    // Find user by ID
+    const userId = req.id; // from auth middleware
     let user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json({
-        message: "User Not Found",
-        success: false,
-      });
+      return res.status(404).json({ message: "User not found", success: false });
     }
 
-    // Update user data
+    // Update normal fields
+    if (fullname) user.fullname = fullname;
+    if (email) user.email = email;
+    if (phoneNumber && !isNaN(phoneNumber)) user.phoneNumber = Number(phoneNumber);
+    if (bio) user.profile.bio = bio;
+    if (skills) user.profile.skills = skills.split(',').map(s => s.trim());
 
-    if(fullname) user.fullname = fullname
-    if(email) user.email = email
-    if(phoneNumber) user.phoneNumber = phoneNumber
-    if(bio) user.profile.bio=bio
-    if(skills) user.profile.skills=skillsArray
+    // Only upload file if it exists
+    if (file) {
+      const fileUri = getDataUri(file);
+      const cloudRes = await cloudinary.uploader.upload(fileUri.content);
+      if (cloudRes) {
+        user.profile.resume = cloudRes.secure_url;
+        user.profile.resumeOriginalName = file.originalname;
+      }
+    }
 
-      //Resume
-        if(cloudRes){
-          user.profile.resume=cloudRes.secure_url     //save cludinary url
-          user.profile.resumeOriginalName=file.originalname //save the original file name
-          console.log(user.profile.resumeOriginalName)
-        }
-
-
-    // Save updated user
     await user.save();
 
-    user= {
-        _id: user._id,
-        fullname: user.fullname,
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-        role: user.role,
-        profile: {
-      ...user.profile,
-      resumeOriginalName: user.profile.resumeOriginalName,
-    },   
-      
-      }
+    const safeUser = {
+      _id: user._id,
+      fullname: user.fullname,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      role: user.role,
+      profile: {
+        ...user.profile,
+        resumeOriginalName: user.profile.resumeOriginalName,
+      },
+    };
+
     return res.status(200).json({
-      message: "Profile updated Successfully",
-      user,
+      message: "Profile updated successfully",
+      user: safeUser,
       success: true,
     });
+
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      message: "Internal Server Error",
-      success: false,
-    });
+    console.error("UpdateProfile error:", error);
+    return res.status(500).json({ message: "Internal server error", success: false });
   }
 };
+
+
+
 

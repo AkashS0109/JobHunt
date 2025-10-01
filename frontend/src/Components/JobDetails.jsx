@@ -73,7 +73,7 @@ export default function JobDetails() {
     
 
       {/* Responsive container */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 my-8 md:my-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 my-8 md:my-12 pt-20">
         {/* Job Card */}
         <div className="rounded-2xl shadow-lg p-6 sm:p-8 bg-gray-300 border border-gray-200 pt-20">
           {/* Header */}
@@ -148,7 +148,7 @@ export default function JobDetails() {
         </div>
       </div>
 
-      <Footer />
+      
     </div>
   );
 }
